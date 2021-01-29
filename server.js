@@ -29,10 +29,9 @@ app.post("/api/notes", function(req, res) {
         fileJSON.push(newNote)
         fs.writeFile("./db/db.json", JSON.stringify(fileJSON), (err) => {
             if (err) throw err;
-            res.status(200)
+            res.status(200).send(true)
         })
-    }) 
-    res.redirect('back');
+    })
 });
 
 app.delete("/api/notes/:id", function(req, res) {
@@ -47,7 +46,7 @@ app.delete("/api/notes/:id", function(req, res) {
         }
         fs.writeFile("./db/db.json", JSON.stringify(fileJSON), (err) => {
             if (err) throw err;
-            res.status(200)
+            res.status(200).send(true)
         })
     })
 });
