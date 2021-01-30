@@ -1,9 +1,9 @@
-var express = require("express");
+const express = require("express");
 const fs = require("fs");
-var path = require("path");
-var uuid = require("uuid")
-var app = express();
-var PORT = process.env.PORT || 3050;
+const path = require("path");
+const uuid = require("uuid")
+const app = express();
+const PORT = process.env.PORT || 3050;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -21,7 +21,7 @@ app.get("/api/notes", function(req, res) {
 });
 
 app.post("/api/notes", function(req, res) {
-    var newNote = req.body;
+    let newNote = req.body;
     newNote.id = uuid.v4()
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw err;
@@ -39,7 +39,7 @@ app.delete("/api/notes/:id", function(req, res) {
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw err;
         let fileJSON = JSON.parse(data)
-        for (var i = 0; i < fileJSON.length; i++) {
+        for (let i = 0; i < fileJSON.length; i++) {
             if (currentID === fileJSON[i].id) {
                 fileJSON.splice(i, 1);
             }
